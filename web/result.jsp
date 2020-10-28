@@ -12,13 +12,23 @@
         <title>Result Page</title>
     </head>
     <body>
-         <h1>
-            <% 
-                double result = (Double) request.getAttribute("result");
+        <h1>
+            <%
+                String result = (String) request.getAttribute("result");
                 String number1 = request.getParameter("number1");
                 String number2 = request.getParameter("number2");
                 String status = request.getParameter("status");
-                out.print("Result of " + number1 + " " + status + " " + number2 + " = " + result);
+                String symbol = "";
+                if (status != null && status.equals("Add")) {
+                    symbol = "+";
+                } else if (status != null && status.equals("Sub")) {
+                    symbol = "-";
+                } else if (status != null && status.equals("Mul")) {
+                    symbol = "*";
+                } else if (status != null && status.equals("Div")) {
+                    symbol = "/";
+                }
+                out.print("The result of " + number1  + symbol + number2 + " is: " + result);
             %>
         </h1>
     </body>
